@@ -1,0 +1,16 @@
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def fact(n):
+            result = 1
+            for i in range(2, n + 1):
+                result *= i
+            return result
+
+        sum = 0
+        for i in range(n / 2 + 1):
+            sum += fact(n - i) / (fact(n - (2 * i)) * fact(i))
+        return(sum)
