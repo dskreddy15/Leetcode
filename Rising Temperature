@@ -1,0 +1,9 @@
+WITH T AS(
+SELECT id, temperature, recordDate, LAG(recordDate, 1) OVER (ORDER BY recordDate) d, LAG(temperature, 1) OVER (ORDER BY recordDate) l 
+FROM Weather
+)
+
+SELECT id FROM T 
+WHERE 
+DATEDIFF(recordDate,d) = 1
+AND temperature > l
